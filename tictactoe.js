@@ -27,21 +27,23 @@ const winning_combinations = [
 
 for(let i = 0; i < squares.length; i++){
     squares[i].addEventListener('click', () => {
-        if(squares[i].textContent !== ''){
-            ClickSFX = new sound("SmileOS2Click.ogg");
-            ClickSFX.play();
-            return
+        let ClickSFX = new Audio("SmileOS2Click.ogg");
+        ClickSFX.play();
+             
+        if (squares[i].textContent !== '') {
+            return;
         }
+
         squares[i].textContent = currentPlayer
         if(checkWin(currentPlayer)) {
             endMessage.textContent=`Game over! ${currentPlayer} wins!`
-            VictorySFX = new sound("SmileOS2Ok.ogg");
+            VictorySFX = new Audio("SmileOS2Ok.ogg");
             VictorySFX.play();
             return
         }
         if(checkTie()) {
             endMessage.textContent= `Game is tied!`
-            VictorySFX = new sound("SmileOS2Ok.ogg");
+            VictorySFX = new Audio("SmileOS2Ok.ogg");
             VictorySFX.play();
             return
         }
@@ -79,6 +81,6 @@ function restartButton() {
     }
     endMessage.textContent=`X's turn!`
     currentPlayer = players[0]
-    RestartSFX = new sound("sam.wav");
+    RestartSFX = new Audio("SmileOS2Startup.ogg");
     RestartSFX.play();
 }
