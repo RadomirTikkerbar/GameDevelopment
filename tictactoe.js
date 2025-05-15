@@ -3,10 +3,16 @@ const squares = document.getElementsByClassName('square')
 const players = ['X', 'O']
 let currentPlayer = players[0]
 const endMessage = document.createElement('h2')
+var BackgroundOST;
+var ClickSFX;
+var VictorySFX;
+var RestartSFX;
 endMessage.textContent = `X's turn!`
 endMessage.style.marginTop = '30px'
 endMessage.style.textAlign='center'
 board.after(endMessage)
+
+
 
 const winning_combinations = [
     [0, 1, 2],
@@ -22,15 +28,21 @@ const winning_combinations = [
 for(let i = 0; i < squares.length; i++){
     squares[i].addEventListener('click', () => {
         if(squares[i].textContent !== ''){
+            ClickSFX = new sound("SmileOS2Click.ogg");
+            ClickSFX.play();
             return
         }
         squares[i].textContent = currentPlayer
         if(checkWin(currentPlayer)) {
             endMessage.textContent=`Game over! ${currentPlayer} wins!`
+            VictorySFX = new sound("SmileOS2Ok.ogg");
+            VictorySFX.play();
             return
         }
         if(checkTie()) {
             endMessage.textContent= `Game is tied!`
+            VictorySFX = new sound("SmileOS2Ok.ogg");
+            VictorySFX.play();
             return
         }
         currentPlayer = (currentPlayer === players[0]) ? players[1] : players[0] 
@@ -67,4 +79,6 @@ function restartButton() {
     }
     endMessage.textContent=`X's turn!`
     currentPlayer = players[0]
+    RestartSFX = new sound("sam.wav");
+    RestartSFX.play();
 }
