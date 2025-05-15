@@ -43,7 +43,7 @@ for(let i = 0; i < squares.length; i++){
         }
         if(checkTie()) {
             endMessage.textContent= `Game is tied!`
-            VictorySFX = new Audio("SmileOS2Ok.ogg");
+            VictorySFX = new Audio("SmileOS2Error.ogg");
             VictorySFX.play();
             return
         }
